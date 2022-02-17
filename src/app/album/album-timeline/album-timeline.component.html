@@ -1,0 +1,30 @@
+<h1 class="mt-4">Álbuns Públicos</h1>
+<div class="container">
+    <div *ngFor="let album of albuns">
+    </div>
+</div>
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let album of albuns">
+                        <td>{{ album.titulo }}</td>
+                        <td>{{ album.usuario.nome }}</td>
+                        <td>
+                            <button class="btn btn-primary" routerLink="/album/preview/{{ album.id }}">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

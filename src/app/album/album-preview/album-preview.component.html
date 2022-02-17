@@ -1,0 +1,8 @@
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Álbum: {{ album.titulo }}</li>
+</ol>
+
+<div>
+    <img width="500" height="500" *ngFor="let imagem of album.imagens"  
+    src="data:image/png;base64,{{ imagem.imagem }}" class="img-responsive"/>
+</div>

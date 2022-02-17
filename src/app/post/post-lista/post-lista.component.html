@@ -1,0 +1,74 @@
+<h1 class="mt-4">Meus Posts</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consulta</li>
+</ol>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+                {{ mensagemSucesso }}
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+                {{ erro }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-warning" (click)="novoCadastro()">
+                <i class="fa fa-plus"></i> Novo
+            </button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Data de Publicação</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let post of posts">
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.titulo }}</td>
+                        <td>{{ post.publicacao }}</td>
+                        <td>
+                            <button class="btn btn-primary" routerLink="/post/form/{{ post.id }}">
+                                <i class="fa fa-edit"></i>
+                            </button>
+
+                            <button class="btn btn-danger ml-1" (click)="preparaDelecao(post)"
+                                data-toggle="modal" data-target="#modalDelecao"
+                                *ngIf = "usuarioLogado == post.usuario.username">
+                                    <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalDelecao" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Confirmação</h4>
+                </div>
+                
+                <div class="modal-body" *ngIf="postSelecionado">
+                    Confirma a deleção do Post: {{ postSelecionado.titulo }}?
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success" (click)="deletarPost()" data-dismiss="modal">Confirmar</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<h1 class="mt-4">Timeline</h1>
+
+<div class="container ">
+    <div *ngFor="let post of posts">
+        <div>
+            <h3>
+                <p class="font-weight-bold"> {{ post.titulo }} </p>
+            </h3>
+        </div>
+        <div class="d-flex align-items-center" *ngFor="let imagem of post.imagens">
+            <div>
+                <img width="500" height="500" src="data:image/png;base64,{{ imagem.imagem }}" class="img-responsive" />
+            </div>
+        </div>
+        <div>
+            <p class="text-sm-left">{{ post.texto }}</p>
+        </div>
+        <div>
+            <label class="font-weight-bold">Link: </label>
+            <a class="font-italic" href="#"> {{post.link }} </a>
+        </div>
+        <div>
+            <p class="text-sm-left">Comente:<i class="fa-solid fa-comment"></i></p>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="comentarioString" name="comentarioString" />
+                <button type="button" class="btn btn-default" (click)="adicionarComentario(post)">
+                    <i class="fa fa-angle-double-right"></i>
+                </button>
+            </div>
+        </div>
+        <br />
+        <div>Comentários:</div>
+        <div *ngFor="let comentario of post.comentarios">
+
+            <div>{{ comentario.comentario }}</div>
+        </div>
+
+        <br />
+    </div>
+</div>

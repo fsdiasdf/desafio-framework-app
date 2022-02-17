@@ -1,0 +1,60 @@
+<h1 class="mt-4">Álbum</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{ album.id ? 'Edição' : 'Cadastro' }}</li>
+</ol>
+<div class="container">
+    <form #albumForm="ngForm" (ngSubmit)="onSubmit()" >
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Album salvo com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Título: *</label>
+                    <input type="text" class="form-control" [(ngModel)]="album.titulo" name="titulo" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Imagem: *</label>
+                    <input type="file" class="custom-file-input" id="customFile" 
+                        [(ngModel)]="album.imagem" name="imagem"
+                        (change)="onChange($event)" multiple
+                        accept=".png, .jpg, .jpeg" >
+                    <label class="custom-file-label" for="customFile" id="customFileLabel">Selecionar arquivo</label>
+                    
+                    <img class="img-thumbnail"  *ngFor="let item of base64Image"  src="data:image/png;base64,{{item}}" alt="" id="img">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success" *ngIf="!album.id">
+                    <i class="fa fa-save" ></i> Salvar
+                </button>
+                <button type="submit" class="btn btn-primary" *ngIf="album.id">
+                    <i class="fa fa-sync-alt" ></i> Atualizar
+                </button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-danger" (click)="voltarParaLista()">
+                    <i class="fa fa-arrow-alt-circle-left" ></i> Voltar
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
