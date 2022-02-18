@@ -37,10 +37,6 @@
                         <td>{{ post.titulo }}</td>
                         <td>{{ post.publicacao }}</td>
                         <td>
-                            <button class="btn btn-primary" routerLink="/post/form/{{ post.id }}">
-                                <i class="fa fa-edit"></i>
-                            </button>
-
                             <button class="btn btn-danger ml-1" (click)="preparaDelecao(post)"
                                 data-toggle="modal" data-target="#modalDelecao"
                                 *ngIf = "usuarioLogado == post.usuario.username">
